@@ -80,5 +80,52 @@ namespace cyclone {
 		{
 			return Vector3(x + vector.x, y + vector.y, z + vector.z);
 		}
+
+		/** Subtracts the given vector from this. */
+		void operator-=(const Vector3& v)
+		{
+			x -= v.x; y -= v.y; z -= v.z;
+		}
+		
+		/** * Returns the value of the given vector subtracted from this. */
+		Vector3 operator-(const Vector3& v) const {
+			return Vector3(x - v.x, y - v.y, z - v.z);
+		}
+
+		/** * Adds the given vector to this, scaled by the given amount. */
+		void addScaledVector(const Vector3& vector, real scale)
+		{
+			x += vector.x * scale; y += vector.y * scale; z += vector.z * scale;
+		}
+
+		/** * Calculates and returns the scalar product of this vector * with the given vector. */
+		real scalarProduct(const Vector3 &vector) const 
+		{
+			return x*vector.x + y*vector.y + z*vector.z;
+		}
+
+		/** * Calculates and returns the scalar product of this vector * with the given vector. */
+		real operator *(const Vector3 &vector) const
+		{
+			return x*vector.x + y*vector.y + z*vector.z;
+		}
+
+		/** * Calculates and returns the vector product of this vector * with the given vector. */
+		Vector3 vectorProduct(const Vector3 &vector) const
+		{
+			return Vector3(y*vector.z - z*vector.y, z*vector.x - x*vector.z, x*vector.y - y*vector.x);
+		}
+
+		/** * Updates this vector to be the vector product of its current * value and the given vector. */
+		void operator %=(const Vector3 &vector)
+		{
+			*this = vectorProduct(vector);
+		}
+
+		/** * Calculates and returns the vector product of this vector * with the given vector. */
+		Vector3 operator%(const Vector3 &vector) const
+		{
+			return Vector3(y*vector.z - z*vector.y, z*vector.x - x*vector.z, x*vector.y - y*vector.x);
+		}
 	};
 }
