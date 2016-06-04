@@ -20,6 +20,13 @@ namespace cyclone {
 		Vector3 velocity;
 
 		/**
+		* Holds the accumulated force to be applied at the next
+		* simulation iteration only. This value is zeroed at each
+		* integration step.
+		*/
+		Vector3 forceAccum;
+
+		/**
 		* Holds the acceleration of the particle. This value
 		* can be used to set acceleration due to gravity (its primary
 		* use) or any other constant acceleration.
