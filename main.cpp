@@ -1,8 +1,10 @@
 #include <iostream>
+#include <windows.h>
 
 #include "precision.h"
 #include "core.h"
 #include "include\gl\freeglut.h"
+#include "timing.h"
 
 using namespace std;
 
@@ -36,12 +38,17 @@ void display()
 
 void update()
 {
+	TimingData::get().update();
+
+
 	glutPostRedisplay();
 }
 
 void main(int argc, char** argv)
 {
 	glutInit(&argc, argv);
+	TimingData::init();
+
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
 	glutInitWindowSize(640, 480);
 	glutInitWindowPosition(300, 300);
@@ -60,4 +67,6 @@ void main(int argc, char** argv)
 	glMatrixMode(GL_MODELVIEW);
 
 	glutMainLoop();
+
+	TimingData::deinit();
 }
